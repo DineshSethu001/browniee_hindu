@@ -6,7 +6,7 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://browniee-hindu-v114.vercel.app/";
+const API_URL = import.meta.env.VITE_API_URL;
 export default function App() {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -35,7 +35,7 @@ const response = await fetch(`${API_URL}/api/products`);
         );
 
         setProducts(normalizedProducts);
-      } catch(err) {
+      } catch {
         setError(
           "Could not connect to the store. Please check whether the backend is running."
         );
@@ -163,28 +163,42 @@ async function handleCheckout() {
     <div className="min-h-screen bg-amber-50/50">
       <Header cartCount={cartCount} />
 
-      <main className="mx-auto max-w-7xl px-5 py-10 sm:py-14">
-        <section className="mb-12 rounded-3xl bg-amber-950 px-6 py-12 text-center text-white sm:px-12 sm:py-16">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">
-            Freshly baked happiness
-          </p>
+      <main className="mx-auto max-w-8xl px-5 py-10 sm:py-14">
+       
+<section className="relative isolate mb-12 overflow-hidden rounded-3xl px-6 py-16 text-center text-white sm:px-12 sm:py-24">
 
-          <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
-            Welcome to Brownie Bliss
-          </h1>
+  {/* Animated GIF background */}
+  <img
+    src="intro.gif"
+    alt=""
+    aria-hidden="true"
+    className="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
 
-          <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-amber-100 sm:text-lg">
-            Rich chocolate, fudgy centres, and sweet moments
-            made just for you.
-          </p>
+  {/* Dark overlay for readable text */}
+  <div className="absolute inset-0 -z-10 bg-amber-950/65" />
 
-          <a
-            href="#products"
-            className="mt-8 inline-block rounded-full bg-amber-300 px-7 py-3 font-bold text-amber-950 transition hover:bg-amber-200"
-          >
-            Explore Brownies
-          </a>
-        </section>
+  <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">
+    Freshly baked happiness
+  </p>
+
+  <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
+    Welcome to Brownie Bliss
+  </h1>
+
+  <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-amber-100 sm:text-lg">
+    Rich chocolate, fudgy centres, and sweet moments
+    made just for you.
+  </p>
+
+  <a
+    href="#products"
+    className="mt-8 inline-block rounded-full bg-amber-300 px-7 py-3 font-bold text-amber-950 transition hover:bg-amber-200"
+  >
+    Explore Brownies
+  </a>
+</section>
+
 
         <section id="products" className="scroll-mt-24">
           <div className="mb-7">
