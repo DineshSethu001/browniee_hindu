@@ -18,7 +18,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://brownie-hindu-v114.vercel.app",
+ ,
+      "https://browniee-hindu.vercel.app/",
     ],
   })
 );
@@ -57,13 +58,6 @@ const products = [
   },
 ];
 
-// API home route
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Welcome to the Brownie Bliss API!",
-  });
-});
 
 // Health check
 app.get("/api/health", (req, res) => {
@@ -72,7 +66,13 @@ app.get("/api/health", (req, res) => {
     message: "Backend is running!",
   });
 });
-
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    count: products.length,
+    products,
+  });
+});
 // Get all products
 app.get("/api/products", (req, res) => {
   res.json({
