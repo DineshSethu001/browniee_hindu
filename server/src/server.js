@@ -16,14 +16,13 @@ const razorpay = new Razorpay({
 app.use(
   cors({
     origin: [
+      "https://browniee-hindu.vercel.app",
       "http://localhost:5173",
-      "http://localhost:5174",
- ,
-      "https://browniee-hindu.vercel.app/",
     ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
 app.use(express.json());
 
 // Temporary product data.
