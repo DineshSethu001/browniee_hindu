@@ -6,8 +6,7 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
-const API_URL = "http://localhost:5000/api/products";
-
+const API_URL = import.meta.env.VITE_API_URL || "https://browniee-hindu-v114.vercel.app/";
 export default function App() {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -21,8 +20,7 @@ export default function App() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(API_URL);
-
+const response = await fetch(`${API_URL}/api/products`);
         if (!response.ok) {
           throw new Error("Unable to load products.");
         }
@@ -111,7 +109,7 @@ async function handleCheckout() {
   try {
     // Create the order through your Express backend
     const response = await fetch(
-      "http://localhost:5000/api/payment/create-order",
+`${API_URL}/api/payment/create-order`,
       {
         method: "POST",
         headers: {
