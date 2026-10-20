@@ -13,12 +13,15 @@ const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
+const allowedOrigins = [
+  "https://browniee-hindu.vercel.app",
+  "https://browniee-hindu-bpahzimqu-rulerds-projects.vercel.app",
+  "http://localhost:5173",
+];
+
 app.use(
   cors({
-    origin: [
-      "https://browniee-hindu.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -58,13 +61,7 @@ const products = [
 ];
 
 
-// Health check
-app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend is running!",
-  });
-});
+
 app.get("/", (req, res) => {
   res.json({
     success: true,
